@@ -1,0 +1,247 @@
+/* Loading masker */
+#loadMask{
+    background-color: white;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+body{
+    background: #fcfcfc;
+    font-family: Lato, sans-serif;
+    color: #333333;
+}
+.Container {
+    display: flex;
+    overflow: hidden;
+    height: 85vh;
+    position: relative;
+    width: 80%;
+    max-width:1024px;
+    margin: 2.5rem auto 0;
+    border: 2px solid #dddfdf;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+    background: #fafafa;
+}
+/*All the scrollable sections should overflow and be whatever height they need to be. As they are flex-items (due to being inside a flex container) they could be made to stretch full height at all times if needed.
+WebKit inertia scrolling is being added here for any present/future devices that are able to make use of it.
+*/
+.Left,
+.Right {
+    overflow: auto;
+    height: auto;
+    padding: 2rem;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+}
+/*Entirely optional Ã¢â‚¬â€œ just wanted to remove the scrollbar on WebKit browsers as I find them ugly*/
+.Left::-webkit-scrollbar,
+.Right::-webkit-scrollbar {
+    display: none;
+}
+/*  Left and Right are set sizes while the Middle is set to flex one so it occupies all remaining space. This could be set as a width too if prefereable, perhaps using calc.*/
+.Left{
+    width: 35%;
+    border-right: 2px inset #00004f;
+}
+.Right {
+    width: 100%;
+}
+.searchField{
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid #00004f;
+}
+.searchField input::placeholder,
+input[type="button"]{
+    font-family: Lato, FontAwesome, sans-serif;
+    color: #757575;
+}
+input[type="text"]{
+    outline: none;
+    width: 90%;
+    margin: 0;
+    font-size: 16px;
+    line-height: 18px;
+    height: 18px;
+    padding: 10px 12px;
+    border: 2px solid #ddd;
+    background: #fff;
+    border-radius: 6px;
+    font-family: Lato, sans-serif;
+    color: #888;
+}
+.allNames li{
+    border-bottom: 1px outset #ddd;
+    padding: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+/* Left profile Image */
+.allNames div {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 10px;
+    align-items: center;
+    border: 2px solid #8c8c8c;
+    border-radius: 50%;
+}
+/* Right Section open Styling */
+/* NUll Div Stylings */
+.showNull li {
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: 2px;
+    list-style: initial inside;
+}
+.showNull {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* Profile Image Styling's*/
+.profImage {
+    width: 150px;
+    height: 150px;
+    border: 2px double #dddddd;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+/* Contact Block */
+.contactName div, .phoneSec div {
+    width: 45%;
+}
+.contactBio {
+    margin-top: 2rem;
+}
+.contactName, .phoneSec {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+.Right label {
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+.contactBio input {
+    width: 95%;
+    height: 16px;
+    padding: 8px 10px;
+}
+.contactName input, .phoneSec input{
+    width:90%;
+}
+input[readonly]{
+    cursor: no-drop;
+}
+.margin1{
+    width: 80%;
+    margin: 1rem auto;
+}
+.marginHalf{
+    margin-bottom: 1rem !important;
+}
+/* EDIT & SAVE Button stylings */
+.headerButtons {
+    display: flex;
+    flex-flow: row wrap;
+}
+.headerButtons div {
+    width: 50%;
+}
+.setting {
+    display: flex;
+    flex-flow: row-reverse;
+}
+.headerButtons input{
+    outline: none;
+    padding: 5px 12px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 4px;
+}
+.headerButtons input:hover{
+    cursor: pointer;
+}
+#edit{
+    background: #337ab7;
+    border: 2px outset #2e6da4;
+}
+#save{
+    background: #39bf39;
+    border: 2px outset #2fa72f;
+}
+input.close {
+    background: #d9534f;
+    border: 1px outset #d43f3a;
+}
+#edit:hover{
+    background-color: #286090;
+    border-color: #204d74;
+}
+#save:hover{
+    background-color: #009000;
+    border-color: #008800;
+}
+input.close:hover{
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+/* Contacts click and hover styles */
+.allNames li:active {
+    background: #eaeaea;
+    box-shadow: 1px 1px 0 0 #dbdbdb;
+}
+.allNames li:hover {
+    background: #dbdbdb;
+}
+.active {
+    border-right: 5px inset #16cb0a;
+    background-color: #eaeaea;
+}
+/*----------------------------------- Media Queries --------------------------------*/
+
+@media only screen and (max-width: 992px) {
+    .Container {
+        width: 100%;
+        margin: 0;
+        height: 100vh;
+        border: 0;
+    }
+    .Left {
+        width:45%;
+        padding: 1rem;
+    }
+    .Right {
+        padding: 1rem;
+    }
+    .margin1 {
+        width: 90%;
+    }
+}
+@media only screen and (max-width: 700px) {
+    .hidden{
+        display:none;
+    }
+    .Left{
+        width:100%;
+    }
+    .contactName div, .phoneSec div {
+        width: 100%;
+        margin-bottom: .5rem;
+    }
+    .Left, .Right{
+        padding-top: 2rem;
+        border: 1px solid #00004f;
+    }
+}
+

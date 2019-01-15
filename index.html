@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/normalize.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <title>Task-inTouchapp</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<div id="loadMask"></div>
+<div class="Container" ng-app="allContacts" ng-controller="myManage">
+    <div class="Left">
+        <div class="searchField">
+            <input type = "text" ng-model="search" placeholder="&#xF002;  Search Contact" >
+        </div>
+        <div class="allNames">
+            <ul>
+                <li  ng-repeat="item in name | filter:search" ng-click="setValue(item,$index)" ng-class="{active: ($index == selected)}">
+                    <div>
+                        <img src="http://kotasmartcare.com/wp-content/uploads/2018/03/default-profile.png" alt="profile-image" style="width:100%">
+                    </div>
+                    <span>{{item["Display Name"]}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="Right hidden">
+        <div class="showNull" ng-show="closeMode">
+            <div>
+                <h4>Great way to modify and view contacts</h4>
+                <ul>
+                    <li>Choose the contact to edit/view</li>
+                    <li>Click Edit button to edit</li>
+                    <li>Make the modification</li>
+                    <li>Done with changes? Save them now</li>
+                </ul>
+            </div>
+        </div>
+        <div ng-hide="closeMode">
+          <div class="headerButtons marginHalf">
+            <div>
+                <input type="button" class="close" ng-click="close()" value="&#61453;&nbsp; Close">
+            </div>
+           <div class="setting">
+               <input id="save" type="button" ng-click="save()" value="Save &nbsp; &#xF0C7;" ng-if ="editMode">
+               <input id="edit" type="button" ng-click="edit()" value="Edit &nbsp; &#xF044;" ng-if="!editMode">
+           </div>
+        </div>
+          <div class="profImage">
+            <img src="http://kotasmartcare.com/wp-content/uploads/2018/03/default-profile.png" alt="profile-image" style="width:100%">
+        </div>
+          <div class="contactBio">
+            <div class="contactName margin1">
+              <div>
+                <label>First Name:</label>
+                <input ng-model="firstName" type="text" class="editable">
+              </div>
+              <div>
+                <label>Last Name:</label>
+                <input ng-model="lastName" type="text" class="editable">
+            </div>
+            </div>
+            <div class="disName margin1">
+                <label>Display Name:</label> <input ng-model="disName" type="text" readonly>
+            </div>
+            <div class="contactMail margin1" ng-show="email !=='' || emailOne !== '' || emailTwo !=='' || editMode">
+                <label>E-mail ID's:</label>
+                <input ng-model="email" type="text" class="marginHalf editable" ng-show="email !=='' || editMode">
+                <input ng-model="emailOne" type="text" class="marginHalf editable" ng-show="emailOne !== '' || editMode">
+                <input ng-model="emailTwo" type="text" ng-show="emailTwo !==''|| editMode" class="editable">
+            </div>
+            <div class="phoneNum margin1" ng-show="number !=='' || numberOne !=='' || editMode">
+                <label>Contact Number:</label>
+                <div class="phoneSec">
+                    <div ng-show ="number !==''|| editMode">  <label>Home:</label><input ng-model="number" type="text" class="editable"></div>
+                    <div ng-show ="numberOne !==''|| editMode"> <label>Main:</label><input ng-model="numberOne" type="text" class="editable"> </div>
+                </div>
+            </div>
+            <div class="noteSec margin1" ng-show="notes !==''|| editMode">
+                <label>Notes:</label>
+                <input ng-model="notes" type="text" class="editable">
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script src="js/custom.js"></script>
+<script>
+    window.onload=function() {
+        document.getElementById('loadMask').style.display='none';
+    }
+</script>
+<script src="https://www.gstatic.com/firebasejs/5.6.0/firebase.js"></script>
+<script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAdU7Qw0JpvTMWsfmvKA3Nd4fhtGU2xPIc",
+        authDomain: "intouch-task.firebaseapp.com",
+        databaseURL: "https://intouch-task.firebaseio.com",
+        projectId: "intouch-task",
+        storageBucket: "intouch-task.appspot.com",
+        messagingSenderId: "556788011289"
+    };
+    firebase.initializeApp(config);
+</script>
+</body>
+</html>
